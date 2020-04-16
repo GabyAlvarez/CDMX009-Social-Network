@@ -27,7 +27,6 @@ function registerUser(){
     <input type="email" id="email" class="input" placeholder="Email">
     <input type="password" id="password" class="input" placeholder="Password">
     <input type="password" id="password2" class="input" placeholder="Confirmar password">
-    <span id="errorMsg"> Hay un error, verifica tus datos.</span>
     <input type="button" id="send" class="button" value="Registrar">
   </form>`
   root.innerHTML = registerView
