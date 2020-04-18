@@ -76,7 +76,7 @@ function registerAuthentication(usuario) {
   .catch(function(error) {
       // let errorCode = error.code;
       let errorMessage = error.message;
-      console.log("Error: " + errorMessage);
+      alert("Error: " + errorMessage);
   });
 }
 
