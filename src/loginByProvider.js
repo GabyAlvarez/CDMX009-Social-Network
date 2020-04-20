@@ -11,9 +11,9 @@ export const authGoogle = () => {
   .then(function(result) {
     const usuario = {   
             uid:result.user.uid,
-            nombre:result.user.displayName, 
+            name:result.user.displayName, 
             email:result.user.email, 
-            foto:result.user.photoURL
+            photo:result.user.photoURL
      }
      usersRef.doc(result.user.uid)
        .set(usuario);  
@@ -40,9 +40,9 @@ export const authFacebook = () => {
   .then(function(result) {
     const usuario = {   
       uid:result.user.uid,
-      nombre:result.user.displayName, 
+      name:result.user.displayName, 
       email:result.user.email, 
-       foto:result.user.photoURL
+      photo:result.user.photoURL
      }
      usersRef.doc(result.user.uid)
        .set(usuario);  

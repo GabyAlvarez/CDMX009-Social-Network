@@ -1,5 +1,6 @@
 import  login  from './login.js';
 import {renderSignin} from './signin.js';
+import {renderContentUser} from './contentUser.js';
 
 const appendStyleSheet = (nameSheet) => {
   let link = document.querySelector('[title="styleSheet"]');
@@ -10,7 +11,14 @@ const appendStyleSheet = (nameSheet) => {
 
 export const router = (route) =>{
     // console.log(route)
+    
     switch(route){
+      case 'contentUser':
+        console.log('Entra a la vista de contenido del usuario');
+        // let nameSheet = 'signinStyle.css';
+        appendStyleSheet('contentUser.css');
+        renderContentUser();
+         break;
        case 'profil':
          login.profil();
          break;
@@ -61,4 +69,3 @@ const userStatus = () => {
 }
 
 userStatus();
-

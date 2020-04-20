@@ -12,7 +12,7 @@ const closeSesion = () =>{
 
 const profil = () =>{
   let main = document.querySelector('#main');
-  let user = 'Dors';
+  let user = '';
 
   let profilView = `
     <p>Welcome ${user}</p>

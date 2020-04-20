@@ -31,7 +31,7 @@ function send() {
   }
 
   if(msgError == null) {
-    let usuario = new User(saveName,saveLastName,saveEmail,savePassword);
+    let usuario = new User(saveName,saveLastName,saveEmail);
 
     registerAuthentication(usuario);
     // Enviar correo de confirmacion
@@ -123,7 +123,7 @@ function sentEmailConfirmation() {
 
 /**************************** */
 
-function consultarUsuarios(){
+/*function consultarUsuarios(){
   dataBase.collection("users").get()
     .then(function(data) {
       data.forEach(function(user) {
@@ -132,6 +132,7 @@ function consultarUsuarios(){
           console.log(detalleUser.name);
           console.log(detalleUser.lastName);
           console.log(detalleUser.email);
+          console.log(detalleUser.photoURL);
           console.log("****************")
       });
     }).catch(function()  {
@@ -140,22 +141,33 @@ function consultarUsuarios(){
 }
 
 function consultarUsuario(campo, value){
+  let informationUser = document.querySelector('#main');
   dataBase.collection("users").where(campo, "==", value)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
-        });
-    })
-    .catch(function(error) {
+            informationUser.innerHTML += `<div id="informationUser" class="">
+              <figure>
+                <img src="" class="" alt="${user}">
+              </figure>
+              <p id="" class="">${doc.data().id}</p>
+              <input type="text" id="" class="" placeholder="Your description">${doc.data().name}
+              <input type="button" id="edit" class="button" value="Edit">
+            </div>`
+            console.log("si lee el campo de user, pero integra datos?")
+          });
+        }).catch(function(error) {
         console.log("Error al consultar por correo");
     });
 
-}
+}*/
 
 //consultarUsuarios();
-consultarUsuario("email","gabyalvarzb@gmail.com");
-//consultarUsuario("name","gabs");
+//consultarUsuario("email","gabyalvarzb@gmail.com");
+//consultarUsuario("name","gabs")
+
+/****************************************** */
 
 /*
 
