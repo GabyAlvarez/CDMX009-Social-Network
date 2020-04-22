@@ -1,0 +1,214 @@
+@font-face {
+    font-family: font-text;
+    src: url(../fonts/Montserrat/Montserrat-Regular.ttf);
+  }
+
+html, body{
+  
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body, section, div{
+    /*border: 2px solid red;*/
+    
+}
+
+#main{
+   box-sizing: border-box;
+   margin: 0;
+   height: 100%;
+   background: linear-gradient(180deg, #FAF7EE 8.33%, #E5F6FF 32.81%, #99D8DD 60.94%, #5CB3C1 82.29%, #01587A 100%);
+   background-repeat: no-repeat;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+ /*   width: 100%;
+    height: 100%;*/
+}
+.photo{
+    width: 100px;
+    border-radius: 50px;
+}
+.logo{
+    width: 250px;
+    padding: 20px;
+}
+
+.divisor{
+    display: flex;
+    justify-content: space-between; 
+}
+.positiononeheader{
+    width: 75%;
+}
+.positiontwoheader{
+    width: 25%;
+}
+.positiononer{
+    width: 30%;
+}
+.positiontwo{
+    width: 70%;
+    font-family: Montserrat-Regular;
+}
+.mitad{
+    width: 50%;
+}
+.photo{
+    padding: 20px;
+    width: 200px;
+    border-radius: 150px;
+    margin-left: 100px;
+}
+
+.name{
+    padding: 10px;
+    font-size: 40px;
+    font-family: font-text;
+    font-weight: bold;
+    text-align: center;
+}
+.description{
+    padding: 20px;
+    font-family: font-text;
+    font-size: 30px;
+    text-align: center;
+}
+.button{
+    width: 195px;
+    height: 54px;
+    background-color: #F3BA00;
+    opacity: 0.8;
+    border-radius: 30px;
+    border: #F3BA00;
+    font-family: font-text;
+    font-size: 18px;
+    margin-left: 150px;
+    margin-top: 2px;
+    margin-bottom:9px;
+   }
+
+/**Menú**/
+.site-nave{
+    background-color: #F3BA00;
+    border-radius: 5px;
+    
+}
+ .site-nave-open{
+    height:auto;
+}
+.site-nave ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.site-nave li{
+    border-bottom: 1px solid oldlace;
+}
+.site-nace li:last-child{
+    border-bottom: none;
+}
+.site-nave a{
+    color: black;
+    display: block;
+    padding: 1em 2em;
+    font-size: 13px;
+    font-family: font-text;
+    text-decoration: none;
+    
+}
+.site-nave a:hover{
+    background-color: coral;
+    color: aliceblue;
+}
+.menu-togle{
+    display: none;
+    background-color: #F3BA00;
+    padding: 1em;
+    top: 5em;
+    border-radius: 5px;
+    margin-left: 70px;
+}
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    display: block;
+    background: black;
+    height: 3px;
+    width: 1.75em;
+    border-radius: 3px;
+}
+.hamburger::before{
+    transform: translateY(-6px);
+} 
+.hamburger::after{
+    transform: translateY(3px);
+}
+
+@media (max-width: 414px) {
+    input[type=text], input[type=password] {
+         width: 300px;       
+     }
+     .logo{
+         height: 80px;
+     }
+     .photo{
+        padding: 20px;
+        width: 120px;
+        border-radius: 50px;
+        margin-left: 5px;
+        margin-top: 20px;
+    }
+    .positiontwo p{
+        font-size: 5ppx;
+    }
+    .name{
+        font-size: 15px;
+    }
+    .description{
+        padding-top: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+    }
+    .button{
+        margin-left:0px;
+        margin-top: -50px;
+
+    }
+    .iconomenu{
+        display: flex; 
+        justify-content: center;
+        height: 100px;
+        align-items: center;
+        color: #fff;
+        background-color: coral;
+        padding: 20px;
+        z-index: 100;
+        cursor: pointer; 
+    }
+    .menu-togle{
+        display: block;
+    }
+    .site-nave{
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+		    
+    }
+    .site-nave ul{
+        flex-direction: column;
+    }
+        .site-nave-open{
+            height:auto;
+        }
+            
+}
