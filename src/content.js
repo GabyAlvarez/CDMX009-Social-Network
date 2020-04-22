@@ -46,11 +46,11 @@ export const renderContent = () => {
                       </div>
               </header>
               <div class="divisor">
-              <div class="positionone">
+              <div class="position-photo">
               <img class="photo" src="${doc.data().photo}" /> 
           
               </div>
-              <div class="positiontwo">
+              <div class="position-profeli">
                   <p class="name">${doc.data().name}  ${doc.data().lastName} </p>
                   <p class="description">${doc.data().description}</p>
                   </div>
@@ -63,6 +63,14 @@ export const renderContent = () => {
                   <input type="button" id="TripBoadr" class="button" value="Trip Board">
                   </div>
                   </div>
+                  <div class="divisor">
+                  <div>
+                  <img class="thought-photo" src="${doc.data().photo}" />
+                  </div>
+                  <div>
+                      <input type="text" id="pensamiento" class="input" placeholder="¿Donde te encuentras?"/>
+                    </div>
+                  </div
                 `
               main.innerHTML = profilView;
               let logout = document.querySelector("#logout");
