@@ -96,21 +96,26 @@ body, section, div{
    }
 .input {
     padding-left: 15px;
-    border-radius: 15px;
-    width: 359px;
+    border-radius: 20px;
+    width: 250px;
     height: 54px;
     margin: auto;
     margin-bottom: 15px;
     font-family: font-text;
     font-size: 18px;
-    background-color: #E1E8EC;
-    opacity: 0.5;
-    border: #E1E8EC;
+    background-color: #F3BA00;
+}
+.position-one-thought{
+    width: 30%;
+}
+.position-two-thought{
+    width: 70%;
 }
 .thought-photo{
-    padding-left: 15px;
-    width: 100px;
-    border-radius: 40px;
+    margin-left: 200px;
+    margin-top: 10px;
+    width: 70px;
+    border-radius: 60px;
 }
 /**Menú**/
 .site-nave{
@@ -235,13 +240,20 @@ body, section, div{
     .site-nave-open{
         height:auto;
     }
+    .position-one-thought{
+        width: 20%;
+    }
+    .position-two-thought{
+        width: 80%;
+    }    
     .thought-photo{
-        padding-left: 15px;
-        width: 55px;
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 50px;
         border-radius: 40px;
     }
     .input{
-        width: 80px;
-        border-radius: 10px;
+        border-radius: 20px;
+        width: 180px;
     }        
 }
