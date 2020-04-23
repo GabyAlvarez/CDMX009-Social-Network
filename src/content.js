@@ -62,7 +62,7 @@ export const renderContent = () => {
               <input type="button" id="MyTrips" class="button" value="My Trips">
             </div>
             <div  class="mitad">
-              <input type="button" id="TripBoadr" class="button" value="Trip Board">
+              <input type="button" id="TripBoad" class="button" value="Trip Board">
             </div>
           </div>
           <div class="divisor">
@@ -77,22 +77,26 @@ export const renderContent = () => {
           <div id="list-general"></div>
           `
           main.innerHTML = profilView;
-          
-          postGeneral()
+          postGeneral();
           let logout = document.querySelector("#logout");
-          logout.addEventListener("click", closeSesion);
+            logout.addEventListener("click", closeSesion);
           /*let profeli = document.querySelector("#profel");
           profeli.addEventListener("click", renderProfeli);
           */
          let MyTrips = document.querySelector("#MyTrips");
-           MyTrips.addEventListener("click", () =>{ 
-           readerMyTrips
-           //document.querySelector("#list-general").style.display = 'none'; 
+             MyTrips.addEventListener("click", () =>{ 
+            readerMyTrips();
+            document.querySelector("#list-general").style.display = 'none';     
+          });
+          let tripBoard = document.querySelector("#TripBoad");
+             tripBoard.addEventListener("click", () =>{ 
+            postGeneral();
+            document.quer;ySelector("#list-myTrips").style.display = 'none'; 
           });
          let menu = document.querySelector("#menu");
           menu.addEventListener("click", () =>{
-          let siteNav = document.querySelector("#site-nav");
-          siteNav.classList.toggle("site-nav-open");
+            let siteNav = document.querySelector("#site-nav");
+           siteNav.classList.toggle("site-nav-open");
         });
       }); 
     })

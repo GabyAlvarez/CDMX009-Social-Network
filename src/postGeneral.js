@@ -6,9 +6,11 @@ export const postGeneral = () => {
     let content = document.querySelector('#list-general')
         content.innerHTML = ''
         snap.forEach(doc => {
-            let div = `<div>
-                 <p class="list-content">${doc.data().comentario}</p>
-            </div>`
+            let div = `<div class="list-content">
+                 <p> ${doc.data().comentario}</p>
+                <br/>
+                <img src="iconos/corazon.png" id="like">
+                 </div>`
             let nodo = document.createElement('div')
                 nodo.innerHTML = div
             content.appendChild(nodo)
