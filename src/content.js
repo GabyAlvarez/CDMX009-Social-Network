@@ -1,5 +1,7 @@
 import {router} from './index.js';
-import {renderProfeli} from './profeli.js';
+import {readerMyTrips} from './myTrips.js';
+//import {renderProfeli} from './profeli.js';
+import {postGeneral} from './postGeneral.js';
 const closeSesion = () =>{
     firebase.auth().signOut().then(function(){
       console.log('Cerrando sesión');
@@ -17,8 +19,8 @@ export const renderContent = () => {
     if (user3 != null) {
       let uid = user3.uid;  
     //console.log(uid); 
-    let citiesRef = db.collection('users');
-    let funt = citiesRef.where('uid', '==', uid).get()
+    let userRef = db.collection('users');
+    let funt = userRef.where('uid', '==', uid).get()
       .then(snapshot => {
       if (snapshot.empty) {
           console.log('No matching documents.');
@@ -36,7 +38,7 @@ export const renderContent = () => {
                 <div class="menu-togle" id="menu">  
                 <div class="hamburger"></div>
                 </div>
-                <nav class="site-nave" id="site-nave">
+                <nav class="site-nav" id="site-nav">
                   <ul>
                     <li> <a href="#" id="index"> Inicio </a></li>
                     <li> <a href="#" id="profel"> Perfil </a></li>
@@ -70,22 +72,33 @@ export const renderContent = () => {
             <div class="position-two-thought">
               <input type="text" id="thought" class="input" placeholder="¿Donde te encuentras?"/>
             </div>
-          </div>`
+          </div>
+          <div id="list-myTrips"></div>
+          <div id="list-general"></div>
+          `
           main.innerHTML = profilView;
+          
+          postGeneral()
           let logout = document.querySelector("#logout");
           logout.addEventListener("click", closeSesion);
-          let profeli = document.querySelector("#profel");
+          /*let profeli = document.querySelector("#profel");
           profeli.addEventListener("click", renderProfeli);
-          
-          let menu = document.querySelector("#menu");
+          */
+         let MyTrips = document.querySelector("#MyTrips");
+           MyTrips.addEventListener("click", () =>{ 
+           readerMyTrips
+           //document.querySelector("#list-general").style.display = 'none'; 
+          });
+         let menu = document.querySelector("#menu");
           menu.addEventListener("click", () =>{
-          let siteNav = document.querySelector("#site-nave");
-          siteNav.classList.toggle("site-nave-open");
+          let siteNav = document.querySelector("#site-nav");
+          siteNav.classList.toggle("site-nav-open");
         });
       }); 
     })
     .catch(err => {
       console.log('Error getting documents', err);
     });
+    
   }
 }
