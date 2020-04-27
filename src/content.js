@@ -1,33 +1,21 @@
-import {router} from './index.js';
-import {readerMyTrips} from './myTrips.js';
-//import {renderProfeli} from './profeli.js';
-import {postGeneral} from './postGeneral.js';
-const closeSesion = () =>{
-    firebase.auth().signOut().then(function(){
-      console.log('Cerrando sesión');
-  
-    }).catch(function(error){
-      console.log(error);
-    })
-  }
+import { closeSesion } from './cerrarSesion.js'; 
+import { readerMyTrips } from './myTrips.js';
+import { postGeneral } from './postGeneral.js';
+import { profil} from './createPost.js'; 
 let db= firebase.firestore();
-//let userRef = db.collection('users'); 
-
+let userRef = db.collection('users');
+let main = document.querySelector('#main');
+        
 export const renderContent = () => {
-  let user3 = firebase.auth().currentUser;
-  let  uid;
-    if (user3 != null) {
-      let uid = user3.uid;  
-    //console.log(uid); 
-    let userRef = db.collection('users');
-    let funt = userRef.where('uid', '==', uid).get()
+  let uiduser = firebase.auth().currentUser.uid;
+    if (uiduser != null) {
+    userRef.where('uid', '==', uiduser).get()
       .then(snapshot => {
       if (snapshot.empty) {
           console.log('No matching documents.');
           return;
-      } 
-        snapshot.forEach(doc => {
-        let main = document.querySelector('#main');
+      }
+      snapshot.forEach(doc => {
         let profilView = `
           <header>
             <div class="divisor">  
@@ -70,39 +58,35 @@ export const renderContent = () => {
               <img class="thought-photo" src="${doc.data().photo}" />
             </div class="">
             <div class="position-two-thought">
-              <input type="text" id="thought" class="input" placeholder="¿Donde te encuentras?"/>
+              <input type="text" id="thought" class='thought-input' placeholder="¿Donde te encuentras?"/>
             </div>
           </div>
-          <div id="list-myTrips"></div>
-          <div id="list-general"></div>
-          `
+          <div id="list-post"></div>`;
           main.innerHTML = profilView;
           postGeneral();
           let logout = document.querySelector("#logout");
-            logout.addEventListener("click", closeSesion);
-          /*let profeli = document.querySelector("#profel");
-          profeli.addEventListener("click", renderProfeli);
-          */
-         let MyTrips = document.querySelector("#MyTrips");
-             MyTrips.addEventListener("click", () =>{ 
-            readerMyTrips();
-            document.querySelector("#list-general").style.display = 'none';     
-          });
+              logout.addEventListener("click", closeSesion);
+          let MyTrips = document.querySelector("#MyTrips");
+              MyTrips.addEventListener("click", () =>{ 
+                readerMyTrips();
+              });
           let tripBoard = document.querySelector("#TripBoad");
-             tripBoard.addEventListener("click", () =>{ 
-            postGeneral();
-            document.quer;ySelector("#list-myTrips").style.display = 'none'; 
-          });
+              tripBoard.addEventListener("click", () =>{ 
+                postGeneral();
+              });
+          let thought = document.querySelector("#thought");
+              thought.addEventListener("click", () =>{ 
+                profil();
+              });
          let menu = document.querySelector("#menu");
-          menu.addEventListener("click", () =>{
-            let siteNav = document.querySelector("#site-nav");
-           siteNav.classList.toggle("site-nav-open");
+             menu.addEventListener("click", () =>{
+             let siteNav = document.querySelector("#site-nav");
+                 siteNav.classList.toggle("site-nav-open");
+               });
+            }); 
+        })
+        .catch(err => {
+          console.log('Error getting documents', err);
         });
-      }); 
-    })
-    .catch(err => {
-      console.log('Error getting documents', err);
-    });
-    
-  }
+      }
 }

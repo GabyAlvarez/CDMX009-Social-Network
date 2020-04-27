@@ -21,16 +21,25 @@ export const authGoogle = () => {
       uid:result.user.uid
       }
       let uid2 = result.user.uid; 
-      usersRef.doc(uid2).set({
-        "name": usuario.name,
-        "lastName": usuario.lastName,
-        "email": usuario.email,
-        "password": usuario.password,
-        "description": usuario.description, 
-        "date":usuario.date,
-        "photo": usuario.photo, 
-        "uid":usuario.uid
-      })
+      usersRef.where('uid', '==', uid2).get()
+        .then(snapshot => {
+        if (snapshot.empty) {
+          usersRef.doc(uid2).set({
+            "name": usuario.name,
+            "lastName": usuario.lastName,
+            "email": usuario.email,
+            "password": usuario.password,
+            "description": usuario.description, 
+            "date":usuario.date,
+            "photo": usuario.photo, 
+            "uid":usuario.uid
+          })
+          console.log('No matching documents.');
+         return; 
+        }else{
+         console.log("ya esta registrado") 
+        }
+    })
  })
  .catch(function(error) {
   console.log('Hay un error en Google');
@@ -63,16 +72,25 @@ export const authFacebook = () => {
       uid:result.user.uid
       }
       let uid2 = result.user.uid; 
-      usersRef.doc(uid2).set({
-        "name": usuario.name,
-        "lastName": usuario.lastName,
-        "email": usuario.email,
-        "password": usuario.password,
-        "description": usuario.description, 
-        "date":usuario.date,
-        "photo": usuario.photo, 
-        "uid":usuario.uid
-      })  
+      usersRef.where('uid', '==', uid2).get()
+        .then(snapshot => {
+        if (snapshot.empty) {
+          usersRef.doc(uid2).set({
+            "name": usuario.name,
+            "lastName": usuario.lastName,
+            "email": usuario.email,
+            "password": usuario.password,
+            "description": usuario.description, 
+            "date":usuario.date,
+            "photo": usuario.photo, 
+            "uid":usuario.uid
+          })
+          console.log('No matching documents.');
+         return; 
+        }else{
+         console.log("ya esta registrado") 
+        }
+    })
  })
   .catch(function(error) {
   console.log('Hay un error en Facebook');
