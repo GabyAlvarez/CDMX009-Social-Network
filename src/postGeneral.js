@@ -14,22 +14,21 @@ export const postGeneral = () => {
   let mypost = document.querySelector('#list-post')
   mypost.innerHTML = ''
   snapshot.forEach(doc => {
-    //let id = doc.data().uid; 
-    //console.log(id); 
+    let idpost = doc.data().uiduser;  
     let div = `<div class="list-content">  
       <p>${doc.data().text}</p>
       <img class='imgListPost' src='${doc.data().imageUrl}' />
       <br/>
-      <img class='iconolike' src='iconos/corazon.png' id='like' /> ${doc.data().likes}
+      <button value='${idpost}' id='idpost'/>Like</button>
+      <img class='iconolike' src='iconos/corazon.png' /> ${doc.data().likes}
       </div>`;
       
       let nodo = document.createElement('div')
       nodo.innerHTML = div;
       mypost.appendChild(nodo);
-      let iconolike = document.querySelector("#like");
-            iconolike.addEventListener("click", () =>{ 
-            //console.log("Hola")
-            likes()
+      let iconolike = document.querySelector("#idpost");
+            iconolike.addEventListener("click", (e) =>{ 
+            likes(e); 
           });
       }); 
     })
@@ -37,15 +36,16 @@ export const postGeneral = () => {
       console.log(err); 
       //console.log('Error getting documents', err);
     });
-    // console.log(userRef);
  }
-let uidpost = 1; 
- function likes(uidpost){
+function likes(e){
+  let word = e.target.value;
+  console.log(word); 
+  // 
+/*postRef.onSnapshot(snap => {
 
-  //postRef.where('uidpost', '==', ).get()
-    console.log("hola")
-    console.log(id); 
- }
- function contar(conteo){
-     console.log(conteo); 
- }
+  snap.forEach(doc => {
+    console.log(doc.data()); 
+    console.log(doc.data().iud);
+  })
+*/
+}

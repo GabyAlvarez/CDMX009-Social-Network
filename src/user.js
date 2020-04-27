@@ -1,5 +1,4 @@
 export default class User {
-    
     name
     lastName
     email
