@@ -1,7 +1,8 @@
 import { closeSesion } from './cerrarSesion.js'; 
 import { readerMyTrips } from './myTrips.js';
 import { postGeneral } from './postGeneral.js';
-import { profil} from './createPost.js'; 
+import { renderEditProfeli } from './editProfeli.js'; 
+//import { profil} from './createPost.js'; 
 let db= firebase.firestore();
 let userRef = db.collection('users');
 let main = document.querySelector('#main');
@@ -16,8 +17,15 @@ export const renderContent = () => {
           return;
       }
       snapshot.forEach(doc => {
+        let imguser = doc.data().photo;
+        /*if(imguser == ''){
+          let photouser = '<img src="iconos/corazon.png"/>'; 
+        }else{
+          let photouser = imguser; 
+        }*/
         let profilView = `
-          <header>
+        
+        <header>
             <div class="divisor">  
               <div class="positiononeheader">
                 <img class="logo" src="images/logo.png" alt="TripLife">
@@ -29,7 +37,7 @@ export const renderContent = () => {
                 <nav class="site-nav" id="site-nav">
                   <ul>
                     <li> <a href="#" id="index"> Inicio </a></li>
-                    <li> <a href="#" id="profel"> Perfil </a></li>
+                    <li> <a href="#" id="editProfile"> Perfil </a></li>
                     <li> <a href="#" id="logout"> Cerrar Sesión </a></li>
                   </ul>
                 </nav>
@@ -38,6 +46,7 @@ export const renderContent = () => {
           </header>
           <div class="divisor">
             <div class="position-photo">
+              
               <img class="photo" src="${doc.data().photo}" /> 
             </div>
             <div class="position-profeli">
@@ -66,6 +75,10 @@ export const renderContent = () => {
           postGeneral();
           let logout = document.querySelector("#logout");
               logout.addEventListener("click", closeSesion);
+          let editProfile = document.querySelector("#editProfile");
+              editProfile.addEventListener("click", () =>{ 
+                renderEditProfeli(); 
+              });
           let MyTrips = document.querySelector("#MyTrips");
               MyTrips.addEventListener("click", () =>{ 
                 readerMyTrips();
@@ -76,7 +89,8 @@ export const renderContent = () => {
               });
           let thought = document.querySelector("#thought");
               thought.addEventListener("click", () =>{ 
-                profil();
+                //profil(); 
+                console.log("hola"); 
               });
          let menu = document.querySelector("#menu");
              menu.addEventListener("click", () =>{
@@ -90,3 +104,4 @@ export const renderContent = () => {
         });
       }
 }
+

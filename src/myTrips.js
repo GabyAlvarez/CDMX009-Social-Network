@@ -1,11 +1,11 @@
 let db= firebase.firestore();
 
 export const readerMyTrips = () => {
-  let user3 = firebase.auth().currentUser;
-  if (user3 != null) {
-    let uid = user3.uid;  
+  let currentUser = firebase.auth().currentUser;
+  if (currentUser != null) {
+    let uid = currentUser.uid;  
     let postRef = db.collection('posts');
-        postRef.where('uid', '==', uid).orderBy('date', 'desc').get()
+        postRef.where('uiduser', '==', uid).orderBy('date', 'desc').get()
         .then(snapshot => {
         if (snapshot.empty) {
          console.log('No matching documents.');

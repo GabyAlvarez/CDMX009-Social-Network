@@ -10,20 +10,20 @@ export const authGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
   .then(function(result) {
-    const usuario = {   
-      name:result.user.displayName, 
-      lastName:'', 
-      email:result.user.email, 
-      password:'',
-      description:'',
-      date: new Date(),
-      photo:result.user.photoURL,
-      uid:result.user.uid
-      }
       let uid2 = result.user.uid; 
       usersRef.where('uid', '==', uid2).get()
         .then(snapshot => {
         if (snapshot.empty) {
+          const usuario = {   
+            name:result.user.displayName, 
+            lastName:'', 
+            email:result.user.email, 
+            password:'',
+            description:'',
+            date: new Date(),
+            photo:result.user.photoURL,
+            uid:result.user.uid
+            }
           usersRef.doc(uid2).set({
             "name": usuario.name,
             "lastName": usuario.lastName,
@@ -35,7 +35,8 @@ export const authGoogle = () => {
             "uid":usuario.uid
           })
           //console.log('No matching documents.');
-          userStatus2(); 
+          //userStatus2(); 
+          router('content')
         }else{
          console.log("ya esta registrado") 
         }
@@ -86,7 +87,8 @@ export const authFacebook = () => {
             "uid":usuario.uid
           })
           console.log('No matching documents.');
-          userStatus2();
+          //userStatus2();
+          router('content')
         }else{
          console.log("ya esta registrado") 
         }

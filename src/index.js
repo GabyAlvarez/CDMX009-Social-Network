@@ -15,8 +15,8 @@ export const router = (route) =>{
       case 'content':
         console.log('Entre a la vista de contenido');
         // let nameSheet = 'signinStyle.css';
-        appendStyleSheet('contentStyle.css');
         renderContent();
+        appendStyleSheet('contentStyle.css');
          break;
        case 'profil':
          login.profil();
@@ -29,8 +29,8 @@ export const router = (route) =>{
          break;
        default:
          //let nameSheet = 'loginStyle.css';
-         appendStyleSheet('loginStyle.css');
          login.renderLogin();
+         appendStyleSheet('loginStyle.css');
          break;
     }
 }

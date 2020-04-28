@@ -128,6 +128,47 @@ body, section, div{
     background-color: #ffffff;
     box-shadow: 3px 3px 7px 1px #333;
 }
+.edit-profeli {
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #008F99;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    box-shadow: 3px 3px 7px 1px #333;
+}
+.aling-input{
+    margin-left: 150px;
+}
+.nameUser {
+    padding-left: 15px;
+    border-radius: 30px;
+    width: 359px;
+    height: 54px;
+    margin: auto;
+    margin-bottom: 15px;
+    font-family: font-text;
+    font-size: 18px;
+    background-color: #E1E8EC;
+    border: #E1E8EC;
+}
+.descriptionUser {
+    padding-left: 15px;
+    border-radius: 30px;
+    width: 359px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 15px;
+    font-family: font-text;
+    font-size: 18px;
+    background-color: #E1E8EC;
+    border: #E1E8EC;
+}
+.buttoneditar{
+    margin-left: 200px;
+}
 .imgListPost{
     width:300px;
     padding-left: 100px;
@@ -200,6 +241,11 @@ body, section, div{
 .display_none{
     display: none;
 }
+.img-edit{
+    margin-top: 0px;
+    width: 100%;
+}
+
 @media (max-width: 414px) {
     input[type=text], input[type=password] {
          width: 300px;       
@@ -286,7 +332,26 @@ body, section, div{
         width:100px;
         padding-left: 30px;
       }
-    
+    .img-edit{
+        margin-top: -30px;
+        width: 100%;
+    }
+    .edit-profeli {
+        width: 80%;
+    }
+    .aling-input{
+        margin-left: 0px;
+    }
+    .nameUser {
+        width: 100px;
+        height: 54px;
+    }
+    .descriptionUser {
+        width: 100px; 
+    }
+    .buttoneditar{
+        margin-left: 100px;
+    }
 }
 
 
@@ -297,10 +362,10 @@ figure{
     margin-bottom: 31px;
 }
 
-img{
+/*img{
     width: 100%;
     height: auto;
-}
+}*/
 
 #errorMsg{
     font-family: font-text;
