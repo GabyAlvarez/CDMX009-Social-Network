@@ -177,6 +177,9 @@ body, section, div{
     width: auto;
     height: auto;
 }
+.alingIconosPost{
+    margin-left: 300px;
+}
 /**Menú**/
 .site-nav{
     background-color: #F3BA00;

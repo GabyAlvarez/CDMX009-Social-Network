@@ -15,16 +15,29 @@ export const readerMyTrips = () => {
            mypost.innerHTML = ''
            snapshot.forEach(doc => {
            let div = `<div class="list-content">  
+           <div class="divisor">
+              <div class="positiononeheader">
+              
+              </div>
+              <div class="positiotwoheader">
+                <img  id="${doc.id}" src='iconos/edit-tools.png' class='iconoedit' alt="EditPost" /> 
+                <img  id="${doc.id}" src='iconos/interface.png' class='iconodelite' alt="DeletePost" /> 
+              </div>
+           </div>
+          <br/>
            <p>${doc.data().text}</p>
            <img class='imgListPost' src='${doc.data().imageUrl}' id="iconoLike">
            <br/>
-          <img  id="${doc.id}" src='iconos/corazon.png' class='iconolike' /> ${doc.data().likes}
+          <img  id="${doc.id}" src='iconos/corazon.png' class='iconolike' alt="likePost"/> ${doc.data().likes}
           </div>`
            let nodo = document.createElement('div')
                nodo.innerHTML = div
                mypost.appendChild(nodo);
               });
               let like = document.querySelectorAll(".iconolike");
+              let edit = document.querySelectorAll(".iconoedit");
+              let idelete = document.querySelectorAll(".iconodelete");
+              
               let actionLike = (e) => {
               let  likeRef = db.collection("posts").doc(e.target.id);
                     likeRef.update({
@@ -34,6 +47,12 @@ export const readerMyTrips = () => {
               };
               like.forEach((actionBtnLike) =>
                 actionBtnLike.addEventListener("click", actionLike)
+              );
+              edit.forEach((actionBtnEdit) =>
+                actionBtnEdit.addEventListener("click", actionedit)
+              );
+              idelete.forEach((actionBtnLDelete)>
+                actionBtnLDelete.addEventListener("click", actiondelete)
               );
           })
           .catch(err => {
