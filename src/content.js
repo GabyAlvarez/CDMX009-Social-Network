@@ -1,3 +1,4 @@
+import { router } from './index.js'; 
 import { closeSesion } from './cerrarSesion.js'; 
 import { readerMyTrips } from './myTrips.js';
 import { postGeneral } from './postGeneral.js';
@@ -44,6 +45,7 @@ export const renderContent = () => {
               </div>
             </div>
           </header>
+          <div id="editP">
           <div class="divisor">
             <div class="position-photo">
               
@@ -70,11 +72,16 @@ export const renderContent = () => {
               <input type="text" id="thought" class='thought-input' placeholder="¿Donde te encuentras?"/>
             </div>
           </div>
-          <div id="list-post"></div>`;
+          <div id="list-post"></div>
+          </div>`;
           main.innerHTML = profilView;
           postGeneral();
           let logout = document.querySelector("#logout");
               logout.addEventListener("click", closeSesion);
+          let pindex = document.querySelector("#index");
+              pindex.addEventListener("click", ()=>{
+                  router('content'); 
+              });
           let editProfile = document.querySelector("#editProfile");
               editProfile.addEventListener("click", () =>{ 
                 renderEditProfeli(); 

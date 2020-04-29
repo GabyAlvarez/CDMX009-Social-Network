@@ -10,8 +10,8 @@ export const authGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
   .then(function(result) {
-      let uid2 = result.user.uid; 
-      usersRef.where('uid', '==', uid2).get()
+      let uiduser = result.user.uid; 
+      usersRef.where('uid', '==', uiduser).get()
         .then(snapshot => {
         if (snapshot.empty) {
           const usuario = {   
@@ -24,7 +24,7 @@ export const authGoogle = () => {
             photo:result.user.photoURL,
             uid:result.user.uid
             }
-          usersRef.doc(uid2).set({
+          usersRef.doc(uiduser).set({
             "name": usuario.name,
             "lastName": usuario.lastName,
             "email": usuario.email,

@@ -1,3 +1,4 @@
+import { router } from './index.js'; 
 let db= firebase.firestore();
 let userBD;
 
@@ -12,10 +13,11 @@ export const renderEditProfeli = () => {
          console.log('No matching documents.');
          return; 
         } 
-       let mypost = document.querySelector('#list-post')
+       let mypost = document.querySelector('#editP')
            mypost.innerHTML = ''
            snapshot.forEach(doc => {
-           let div = `
+            userBD = doc.data()
+            let div = `
            <section class="edit-profeli">
                   <figure id="list">
                     <img id="photoUser" class="img-edit" src="${doc.data().photo}" alt="">
@@ -29,6 +31,8 @@ export const renderEditProfeli = () => {
                   </br></br>
                   <div class="buttoneditar">
                   <input type="button" id="btnEditar" class="btnUser" value="Editar">
+                  <br/>
+                  <input type="button" id="toReturn" class="btnUser" value="Regresar">
                   </div>
                   </div>
                   </section></br></br>`
@@ -36,15 +40,19 @@ export const renderEditProfeli = () => {
                nodo.innerHTML = div
                mypost.appendChild(nodo)
                let btnEdit = document.querySelector("#btnEditar");
-               let logout = document.querySelector("#logout");
+               let toReturn = document.querySelector("#toReturn");
                let profileImage = document.querySelector("#profileImage");
                let imageUrl='';
 
                btnEdit.addEventListener("click",edit,false);
-               profileImage.addEventListener("change", e => {
+               toReturn.addEventListener("click", ()=>{
+                   router('content'); 
+               }); 
+              
+              profileImage.addEventListener("change", e => {
                  if (profileImage.files.length != 0) {
                    var reader = new FileReader();
-         
+        
                    reader.onload = (function(theFile) {
                        return function(e) {
                          document.getElementById("list").innerHTML = ['<img class="positionone" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');

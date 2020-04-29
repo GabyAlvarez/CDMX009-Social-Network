@@ -17,20 +17,29 @@ export const readerMyTrips = () => {
            let div = `<div class="list-content">  
            <p>${doc.data().text}</p>
            <img class='imgListPost' src='${doc.data().imageUrl}' id="iconoLike">
-           </div>`
+           <br/>
+          <img  id="${doc.id}" src='iconos/corazon.png' class='iconolike' /> ${doc.data().likes}
+          </div>`
            let nodo = document.createElement('div')
                nodo.innerHTML = div
-               mypost.appendChild(nodo)
-          let iconolike = document.querySelector("#iconoLike");
-              iconolike.addEventListener("click", () =>{ 
-              console.log(like);  
-          }); 
-      }); 
-    })
-    .catch(err => {
-      console.log(err); 
-      //console.log('Error getting documents', err);
-    });
-    // console.log(userRef);
-  }
+               mypost.appendChild(nodo);
+              });
+              let like = document.querySelectorAll(".iconolike");
+              let actionLike = (e) => {
+              let  likeRef = db.collection("posts").doc(e.target.id);
+                    likeRef.update({
+                          likes: firebase.firestore.FieldValue.increment(1)
+                    });
+                    readerMyTrips(); 
+              };
+              like.forEach((actionBtnLike) =>
+                actionBtnLike.addEventListener("click", actionLike)
+              );
+          })
+          .catch(err => {
+            console.log(err); 
+            //console.log('Error getting documents', err);
+          });
+       }
 }
+

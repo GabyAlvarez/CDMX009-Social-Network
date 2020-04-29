@@ -97,10 +97,10 @@ const renderLogin = () =>{
   });
   socialBtns.forEach(btn => btn.onclick = e => {
     if(e.target.id == 'facebook'){
-      console.log('Es Facebook');
+      //console.log('Es Facebook');
       authFacebook();
     }else{
-      console.log('Es google');
+      //console.log('Es google');
       authGoogle();
     }
   });
