@@ -15,10 +15,8 @@ export const readerMyTrips = () => {
         if (snapshot.empty) {
           let mypost = document.querySelector('#list-post')
           mypost.innerHTML = ''
-          let text = 'Genere su nuevo Post'; 
           let div = `<div class="list-content">  
            <br/><br/><br/>
-            <input class='nameUser' disabled value="Genere su nuevo Post"/>
             <br/><br/><br/>
            </div>`
            let nodo = document.createElement('div')
