@@ -44,7 +44,7 @@ body, section, div{
 
 .divisor{
     display: flex;
-    justify-content: space-between; 
+    justify-content: row ; 
 }
 .positiononeheader{
     width: 75%;
@@ -53,14 +53,14 @@ body, section, div{
     width: 25%;
 }
 .position-photo{
-    width: 30%;
+    width: 40%;
 }
 .position-profile{
-    width: 70%;
-    
+    width: 60%;
 }
 .mitad{
-    width: 50%;
+    padding-left: 200px;
+    padding-right: 200px;
 }
 .photo{
     padding: 20px;
@@ -210,7 +210,6 @@ body, section, div{
     font-size: 13px;
     font-family: font-text;
     text-decoration: none;
-    
 }
 .site-nav a:hover{
     background-color: coral;
@@ -474,9 +473,12 @@ input[type=button]:hover{
     .position-profile{
         font-size: 5ppx; 
     }
-
+    .mitad{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
     .name{
-        margin-top:-20px;
+        margin-top: 0px;
         font-size: 13px;
         width: 200px;
         text-align: left;

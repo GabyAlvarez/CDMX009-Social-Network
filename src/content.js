@@ -37,8 +37,8 @@ export const renderContent = () => {
               </div>
               <div class="positiontwoheader">
                 <div class="menu-togle" id="menu">  
-                <div class="hamburger"></div>
-                </div>
+                  <div class="hamburger"></div>
+                 </div>
                 <nav class="site-nav" id="site-nav">
                   <ul>
                     <li> <a href="#" id="index"> Inicio </a></li>
@@ -51,10 +51,9 @@ export const renderContent = () => {
           </header>
           <div id="editP">
           <div class="divisor">
-            <div class="position-photo">
-              
-              <img class="photo" src="${doc.data().photo}" /> 
-            </div>
+              <div class="position-photo">
+                <img class="photo" src="${doc.data().photo}" /> 
+              </div>
             <div class="position-profeli">
               <p class="name">${doc.data().name}  ${doc.data().lastName} </p>
               <p class="description">${doc.data().description}</p>
@@ -64,7 +63,7 @@ export const renderContent = () => {
             <div class="mitad">
               <input type="button" id="MyTrips" class="button" value="My Trips">
             </div>
-            <div  class="mitad">
+            <div class="mitad">
               <input type="button" id="TripBoad" class="button" value="Trip Board">
             </div>
           </div>
