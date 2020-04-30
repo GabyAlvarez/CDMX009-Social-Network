@@ -1,15 +1,32 @@
+import {renderPost} from "./createPost.js";
+import {editPost} from "./editPost.js";
+import {deletePost} from "./deletePost.js";
+
+
 let db= firebase.firestore();
 
 export const readerMyTrips = () => {
   let currentUser = firebase.auth().currentUser;
   if (currentUser != null) {
-    let uid = currentUser.uid;  
+    let uid = currentUser.uid;
     let postRef = db.collection('posts');
-        postRef.where('uiduser', '==', uid).orderBy('date', 'desc').get()
+        postRef.where('uid', '==', uid).orderBy('date', 'desc').get()
         .then(snapshot => {
         if (snapshot.empty) {
-         console.log('No matching documents.');
-         return; 
+          let mypost = document.querySelector('#list-post')
+          mypost.innerHTML = ''
+          let text = 'Genere su nuevo Post'; 
+          let div = `<div class="list-content">  
+           <br/><br/><br/>
+            <input class='nameUser' disabled value="Genere su nuevo Post"/>
+            <br/><br/><br/>
+           </div>`
+           let nodo = document.createElement('div')
+               nodo.innerHTML = div
+               mypost.appendChild(nodo);
+           
+          console.log('No matching documents.');
+         //return; 
         } 
        let mypost = document.querySelector('#list-post')
            mypost.innerHTML = ''
@@ -21,7 +38,7 @@ export const readerMyTrips = () => {
               </div>
               <div class="positiotwoheader">
                 <img  id="${doc.id}" src='iconos/edit-tools.png' class='iconoedit' alt="EditPost" /> 
-                <img  id="${doc.id}" src='iconos/interface.png' class='iconodelite' alt="DeletePost" /> 
+                <img  id="${doc.id}" src='iconos/interface.png' class='iconodelete' alt="DeletePost" /> 
               </div>
            </div>
           <br/>
@@ -49,10 +66,20 @@ export const readerMyTrips = () => {
                 actionBtnLike.addEventListener("click", actionLike)
               );
               edit.forEach((actionBtnEdit) =>
-                actionBtnEdit.addEventListener("click", actionedit)
+                actionBtnEdit.addEventListener("click", e => {
+                  console.log("Edit post"); 
+                  console.log(e.target.id);
+                  let userName = 'usuario'; /*aquí se debe jalar el nombre del usuario*/
+                  renderPost(userName, uid);
+                  editPost(e.target.id);
+                })
               );
-              idelete.forEach((actionBtnLDelete)>
-                actionBtnLDelete.addEventListener("click", actiondelete)
+              idelete.forEach((actionBtnLDelete) =>
+                actionBtnLDelete.addEventListener("click", e =>{
+                  console.log("Delete post"); 
+                  console.log(e.target.id);
+                  deletePost(e.target.id);
+                })
               );
           })
           .catch(err => {

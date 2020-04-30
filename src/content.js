@@ -3,6 +3,10 @@ import { closeSesion } from './cerrarSesion.js';
 import { readerMyTrips } from './myTrips.js';
 import { postGeneral } from './postGeneral.js';
 import { renderEditProfeli } from './editProfeli.js'; 
+import {renderPost} from "./createPost.js";
+import {newPost} from "./createPost.js";
+
+
 //import { profil} from './createPost.js'; 
 let db= firebase.firestore();
 let userRef = db.collection('users');
@@ -69,7 +73,7 @@ export const renderContent = () => {
               <img class="thought-photo" src="${doc.data().photo}" />
             </div class="">
             <div class="position-two-thought">
-              <input type="text" id="thought" class='thought-input' placeholder="¿Donde te encuentras?"/>
+              <input type="button" id="thought" class='thought-input' value="¿Dónde te encuentras hoy?"/>
             </div>
           </div>
           <div id="list-post"></div>
@@ -80,10 +84,11 @@ export const renderContent = () => {
               logout.addEventListener("click", closeSesion);
           let pindex = document.querySelector("#index");
               pindex.addEventListener("click", ()=>{
-                  router('content'); 
+                  router('content');
               });
           let editProfile = document.querySelector("#editProfile");
               editProfile.addEventListener("click", () =>{ 
+                let siteNav3 = document.querySelector("#site-nav");
                 renderEditProfeli(); 
               });
           let MyTrips = document.querySelector("#MyTrips");
@@ -96,8 +101,12 @@ export const renderContent = () => {
               });
           let thought = document.querySelector("#thought");
               thought.addEventListener("click", () =>{ 
-                //profil(); 
-                console.log("hola"); 
+                //profil();
+                console.log("Create post"); 
+                let userName = `${doc.data().name}`;
+                renderPost(userName, uiduser);
+                newPost(userName, uiduser); 
+                
               });
          let menu = document.querySelector("#menu");
              menu.addEventListener("click", () =>{

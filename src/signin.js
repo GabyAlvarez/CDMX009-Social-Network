@@ -92,6 +92,7 @@ function showError(campo){
 }
 
 function registerUser (usuario, data) {
+  console.log(data.user.uid);
   dataBase.collection("users").doc(data.user.uid).set({
     "name": usuario.name,
     "lastName": usuario.lastName,
@@ -129,7 +130,6 @@ function sentEmailConfirmation() {
 }
 
 /*
-
 function outlogin() {
   firebase.auth().signOut().then(function(){
       console.log("Deslogiado");
@@ -137,7 +137,6 @@ function outlogin() {
       console.log("Error"+error);
   })
 }
-
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // var displayName = user.displayName;
@@ -151,9 +150,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(!user.emailVerified){
       // outlogin();
     }
-
   } else {
-
   }
 });
 */
