@@ -103,8 +103,9 @@ export const renderContent = () => {
                 //profil();
                 console.log("Create post"); 
                 let userName = `${doc.data().name}`;
+                let photoUser = `${doc.data().photo}`;
                 renderPost(userName, uiduser);
-                newPost(userName, uiduser); 
+                newPost(userName, uiduser, photoUser); 
                 
               });
          let menu = document.querySelector("#menu");

@@ -1,6 +1,7 @@
 import {router } from './index.js'; 
 let db= firebase.firestore();
 let postRef = db.collection('posts');
+let userRef = db.collection('users');
 let privacy = "public";
    
 export const postGeneral = () => {
@@ -10,30 +11,39 @@ export const postGeneral = () => {
      console.log('No matching documents.');
       return; 
   }
+  //let name = snapshot.data().uid; 
+  //console.log(name); 
   let mypost = document.querySelector('#list-post')
       mypost.innerHTML = ''; 
       snapshot.forEach(doc => {  
-      let div = `<div class="list-content">  
-        <p>${doc.data().text}</p>
-        <img class='imgListPost' src='${doc.data().imageUrl}' />
-        <br/>
-        <img  id="${doc.id}" src='iconos/corazon.png' class='iconolike' /> ${doc.data().likes}
-        </div>`;
-      let nodo = document.createElement('div')
-          nodo.innerHTML = div;
-          mypost.appendChild(nodo);
-        });
-        let like = document.querySelectorAll(".iconolike");
-        let actionLike = (e) => {
-        let  likeRef = db.collection("posts").doc(e.target.id);
+        let post = doc.data(); 
+            let div = `<div class="list-content">  
+            <p>${doc.data().text}</p>
+            <img class='imgListPost' src='${doc.data().imageUrl}' />
+            <br/>
+            <img  id="${doc.id}" src='iconos/corazon.png' class='iconolike' /> ${doc.data().likes}
+            </div>`;
+          let nodo = document.createElement('div')
+              nodo.innerHTML = div;
+              mypost.appendChild(nodo);
+           })
+          let like = document.querySelectorAll(".iconolike");
+          let actionLike = (e) => {
+          let  likeRef = db.collection("posts").doc(e.target.id);
               likeRef.update({
-                    likes: firebase.firestore.FieldValue.increment(1)
+                  likes: firebase.firestore.FieldValue.increment(1)
+              })
+              .then(() => {
+                postGeneral();
+              })
+              .catch((error)=> {
+                console.log('No se genero el like');
               });
-              postGeneral(); 
         };
         like.forEach((actionBtnLike) =>
           actionBtnLike.addEventListener("click", actionLike)
-        );
+        ); 
+        
     })
     .catch(err => {
       console.log(err); 
