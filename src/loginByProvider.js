@@ -1,7 +1,7 @@
-
 import User from "./user.js";
 import {router} from './index.js';  
 import {userStatus} from './index.js';  
+
 const db = firebase.firestore();
 const usersRef = db.collection('users'); 
 
@@ -11,6 +11,8 @@ export const authGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
   .then(function(result) {
+    console.log(result);
+   
     const usuario = {   
       name:result.user.displayName, 
       lastName:'', 
@@ -36,6 +38,8 @@ export const authGoogle = () => {
             "uid":usuario.uid
           })
           console.log('Ya guardé los datos del user')
+          //console.log('No matching documents.');
+          //userStatus(); 
         }else{
          console.log("ya esta registrado") 
         }
@@ -105,4 +109,3 @@ export const authFacebook = () => {
    
   });
 } 
-

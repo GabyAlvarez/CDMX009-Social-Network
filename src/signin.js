@@ -3,7 +3,7 @@ import {router} from './index.js';
 
 let dataBase= firebase.firestore();
 
-function send() {
+ export function send() {
   let msgError = null;
 
   let saveName= document.querySelector('#name').value;
@@ -30,7 +30,13 @@ function send() {
   }else if(savePassword2 == null || savePassword2 == '' || savePassword2 == undefined ||savePassword != savePassword2 ){
     msgError ="Password no coicide";
     showError(document.querySelector('#password2'));
-  }
+  }/*else if(savePhoto == null || savePhoto == '' || savePhoto == undefined){
+    let myImage = new Image(200, 200);
+    myImage.src = 'https://firebasestorage.googleapis.com/v0/b/triplife-c3b62.appspot.com/o/images%2FprofileUser.svg?alt=media&token=2c3ab67d-1403-45e3-bb11-381c2b248e69';
+    console.log(myImage);
+    savePhoto = myImage.src;
+  }*/
+
 
   if(msgError == null) {
     let usuario = new User(saveName,saveLastName,saveEmail,savePassword,saveDescription,saveDate,savePhoto);
@@ -53,7 +59,7 @@ export const renderSignin = () => {
       <input type="email" id="email" class="input" placeholder="Email">
       <input type="password" id="password" class="input" placeholder="Password">
       <input type="password" id="password2" class="input" placeholder="Confirm password">
-      <input type="hidden" id="description" value="">
+      <input type="hidden" id="description" value="Cuentanos un poco de ti!!">
       <input type="hidden" id="photo" value="">
       <span id="errorMsg"> Hay un error, verifica tus datos.</span>
       <input type="button" id="send" class="button" value="Sign in">
@@ -72,7 +78,7 @@ export const renderSignin = () => {
 
 } 
 
-function registerAuthentication(usuario) {
+export function registerAuthentication(usuario) {
   firebase.auth().createUserWithEmailAndPassword(usuario.email, usuario.password)
   .then(function(data){
     registerUser(usuario, data);
@@ -103,14 +109,8 @@ function registerUser (usuario, data) {
     "photo": usuario.photo,
     "uid":data.user.uid
   })
-  /*
-  dataBase.collection("users").add({
-    "name": usuario.name,
-    "lastName": usuario.lastName,
-    "email": usuario.email,
-    "password": usuario.password
-  })*/
   .then((data) => {
+    console.log(data);
     sentEmailConfirmation(usuario.email);
     console.log("Usuario registrado confirme su cuenta");
   }).catch((error)=> {
@@ -128,29 +128,3 @@ function sentEmailConfirmation() {
     console.log("Usuario NO  registrado correctamente: " + error);
   });
 }
-
-/*
-function outlogin() {
-  firebase.auth().signOut().then(function(){
-      console.log("Deslogiado");
-  }).catch(function(error){
-      console.log("Error"+error);
-  })
-}
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // var displayName = user.displayName;
-    // var email = user.email;
-    // var emailVerified = user.emailVerified;
-    // var photoURL = user.photoURL;
-    // var isAnonymous = user.isAnonymous;
-    // var uid = user.uid;
-    // var providerData = user.providerData;
-    console.log(user);
-    if(!user.emailVerified){
-      // outlogin();
-    }
-  } else {
-  }
-});
-*/

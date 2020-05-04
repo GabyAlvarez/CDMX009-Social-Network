@@ -6,19 +6,19 @@ export default class Post {
     privacy
     //location
     date
-    userName
     uid
+    userName
     photoUser
 
-    constructor(text,imageLink,imageId,privacy,date,userName,uid, photoUser){
+    constructor(text,imageLink,imageId,privacy,date,uid,userName,photoUser){
         this.text = text;
         this.imageLink = imageLink;
         this.imageId = imageId;
         this.privacy = privacy;
         //this.location = location;
         this.date = date;
-        this.userName = userName; 
         this.uid = uid;
+        this.userName = userName; 
         this.photoUser = photoUser; 
     }
 }
